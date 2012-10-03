@@ -6,9 +6,17 @@ module RCat
       #@display = RCat::Display.new @params 
     end
     
-    #TODO:
-    #CREATE A NEW PARSER TO IN ORDER TO MANIPULATE THE TEXT.
-    def parse_options(argv)
+    def run
+     if @files.empty?
+      @display.render(STDIN)
+     else
+       @files.each do |filename|
+        File.open(filename) {|f| @display.render(f)}
+       end
+     end
+    end
+
+   def parse_options(argv)
       
     end
     
